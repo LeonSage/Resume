@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/stylesheets/adList.css">
+</head>
+<body>
+<div>
+	<header>
+	  <p>欢迎>管理中心><label>广告管理</label></p>
+	  <hr color="#0A7A60" />
+	</header> 
+	<div id="func">
+		<button onclick="javascript:window.location.href='__APP__/Activity/addActivity'">添加广告</button>
+		<input type="text" >搜索
+	</div>	
+	<br />
+	<table cellspacing="0px">
+		<thead>
+			<tr>
+				<td>ID</td>
+				<td>广告链接</td>
+				<td>开始投放时间</td>
+				<td>有效时长</td>
+				<td>登记时间</td>
+				<td>备注</td>
+				<td>价格</td>
+				<td>审核状态</td>
+				<td>照片</td>
+				<td class="operate">操作</td>
+			</tr>
+		</thead>
+		<tbody>
+			<volist name='adData1' id='ad'>
+				<tr>
+					<td>id : {$ad['aid']}</td>
+					<td>
+						<php> 
+							switch($ad['action'])
+								{ case 'web' :
+									echo $ad['web_link'];break; 
+								  case 'goods': 
+								  	echo '__APP__'.'/Goods/show/id/'.$ad['content_id'];break;
+								  case 'activity':
+								  	echo '__APP__'.'/Activity/show/id/'.$ad['content_id'];break;
+								}
+						</php>>
+						广告链接 
+					</td>
+					<td>开始投放时间 ： {$ad['start_time']}</td> 
+					<td>有效时长 ：{$ad['live_time']}</td> 
+					<td>登记时间 ： {$ad['reg_time']}</td> 
+					<td>备注 ： {$ad['ainfo']}</td>
+					<td>价格 ： {$ad['price']}</td> 
+					<td>审核状态：<php>if($ad['audit']==2) echo '通过'; else echo'未通过'.' 未通过原因:'.$ad['refuse_reason']</php></td>
+					<td>
+					    <php> 
+							$pics=explode(',',$ad['pic_link']);
+						</php>
+						<volist name='pics' id='pic' >							
+							<img src='__ROOT__/images/default/{$pic}.jpg' style="height:100px" />
+						</volist>
+	        		</td>
+	        		<td>
+				        <button onclick="javascript:window.location.href='__URL__/delActi/id/{$acti['id']}'">删除</button>
+						<button onclick="javascript:window.location.href='__URL__/editActi/id/{$acti['id']}'">编辑</button>
+	        		</td>
+		    	</tr>
+			</volist>
+		</tbody>		
+	</table>
+</div>
+</body>
+</html>

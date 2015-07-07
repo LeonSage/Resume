@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+	<title>汇巨优逛后台管理系统</title>
+	<link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/stylesheets/index.css">
+</head>
+<body>
+	<div id="left">
+		<div id="currentTransaction">
+			<p>汇巨优逛后台管理系统</p>
+			<p><img src="__ROOT__/images/common/gear.png"> &nbsp;管理中心</p>
+		</div>
+		<div id="navbar">
+			<ul>
+        		<php> $asso_area= session('asso_area');</php>
+				<switch name="asso_area">
+                    <case value="app">
+                    	<li onclick="$('#content').load('__APP__/City/index')">开通城市管理</li>
+                    </case>
+                    <case value="city">
+                    	<li onclick="$('#content').load('__APP__/Mall/index')">商城管理</li>
+                    	<li onclick="$('#content').load('__APP__/Shop/shopListForCity')">商铺管理</li>
+                		<li onclick="$('#content').load('__APP__/Adadmin/adList')">广告审核</li>
+                		<li onclick="$('#content').load('__APP__/Brand/showBrand')">品牌列表</li>
+                    </case>
+                    <case value="area">
+                    	<li onclick="$('#content').load('__APP__/Index/right')">商城管理</li>
+                		<li onclick="$('#content').load('__APP__/Index/right')">商城管理员管理</li>
+                    </case>
+                    <case value="mall">
+                    	<li onclick="$('#content').load('__APP__/Mall/mallInfoAdmin')">商城信息管理</li>
+                		<li onclick="$('#content').load('__APP__/Shop/shopList')">商铺管理</li>
+                		<li onclick="$('#content').load('__APP__/Activity/activityList')">活动管理</li>
+                		<li onclick="$('#content').load('__APP__/Adadmin/ads.html')">广告管理</li>
+                		<li onclick="$('#content').load('__APP__/Category/showCategory')">分类列表</li>
+                		<li onclick="$('#content').load('__APP__/Brand/showBrand')">品牌列表</li>
+                    </case>
+                    <case value="shop">
+                    	<li onclick="$('#content').load('__APP__/Shop/shopInfoAdmin')">店铺信息管理</li>
+                		<li onclick="$('#content').load('__APP__/Goods/goodsList')">商品管理</li>
+                		<li onclick="$('#content').load('__APP__/Activity/activityList')">活动管理</li>
+                		<!-- 此时用户为shop，应该修改adList2.html文件 -->
+                		<li onclick="$('#content').load('__APP__/Adadmin/adList')">广告管理</li>
+                		
+                		<li onclick="$('#content').load('__APP__/Category/showCategory')">分类列表</li>
+                    </case>
+                </switch>
+			</ul>
+		</div>
+	</div>
+	<div id="right">
+		<div id="manageMessage">
+			<div id="manageBar">
+				<ul>
+					<li><a href="__APP__/Index/adminCenter" target="content">管理中心</a></li>
+					<li onclick="$('#content').load('__APP__/Message/showMessage')">信息中心</li>
+					<li>数据管理</li>
+					<li>
+                        <img src="__ROOT__/images/common/user.png">{$username}<a href="__APP__/Index/logout"><label><img src="__ROOT__/images/common/exit.png">退出登录</label></a></li>
+				</ul>
+			</div>
+			<div id="shop">
+				<div id="shopInfo">
+					<img src="__ROOT__/images/common/shop.png">
+					<p>商城名字：茵曼</p>
+				</div>
+				<div id="shopKeeperInfo">
+					<img src="__ROOT__/images/common/shopKeeper.png">
+					<p>联系人：王金虎</p>
+					<p>电话：15913136080</p>
+				</div>
+			</div>			
+		</div>
+		<!-- <label>描述信息</label>
+			    加载编辑器的容器
+			    <script id="container" name="info" type="text/plain">
+			    </script>
+			    配置文件
+			    <script type="text/javascript" src="__PUBLIC__/UEditor/ueditor.config.js"></script>
+			    编辑器源码文件
+			    <script type="text/javascript" src="__PUBLIC__/UEditor/ueditor.all.js"></script>
+			    <script type="text/javascript">
+			    var ue = UE.getEditor('container');
+			    </script><br/> -->
+		<div id="content"></div>		
+	</div>
+</body>
+<script src="__ROOT__/Public/js/lib/jquery-2.1.4.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('#content').load('__APP__/Shop/shopInfoAdmin');	
+	});
+</script>
+</html>
+
+
